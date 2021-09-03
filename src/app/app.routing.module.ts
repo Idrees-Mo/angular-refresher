@@ -7,9 +7,24 @@ import { TypingHomeComponent } from './typingapp/typing-home/typing-home.compone
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
-  { path: 'password', component: PasswordHomeComponent },
-  { path: 'typing', component: TypingHomeComponent },
-  { path: 'posts', component: PostsHomeComponent },
+  {
+    path: 'password',
+    loadChildren: () =>
+      import('./passwordapp/passwordapp.module').then(
+        (m) => m.PasswordappModule
+      ),
+  },
+  {
+    path: 'typing',
+    loadChildren: () =>
+      import('./typingapp/typingapp.module').then((m) => m.TypingappModule),
+  },
+
+  {
+    path: 'posts',
+    loadChildren: () =>
+      import('./postsapp/postsapp.module').then((m) => m.PostsappModule),
+  },
 ];
 
 @NgModule({
